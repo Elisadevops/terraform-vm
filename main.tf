@@ -15,12 +15,12 @@ provider "proxmox" {
 
 #Configure Proxmox Resources Here
 resource "proxmox_vm_qemu" "terraform_proxmox_test" {
-  name        = "terraform-vm-${count.index + 1}"  # VM Name with index
+  name        = "terraform-vm"  # VM Name with index
   target_node = var.target_node                         # Proxmox node name
   clone       = var.template_name                       # Template to clone
   count       = 1  
   vmid        =  0861
-  os_type     = "cloud-init"
+  #os_type     = "cloud-init"
   cores       = 2
   memory      = 1024
   scsihw = "virtio-scsi-pci"
