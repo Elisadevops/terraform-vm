@@ -7,11 +7,11 @@ terraform {
   }
 }
 provider "proxmox" {
-  pm_api_url     = "https://64.255.204.91:8006/api2/json"  
-  pm_user        = var.pm_user                                
-  pm_password    = var.pm_password                            
-  pm_tls_insecure = true  
-} 
+  pm_api_url     = "https://64.255.204.91:8006/api2/json"  # Proxmox server API endpoint
+  pm_user        = "elisa@pve"                             # Your Proxmox user with necessary permissions
+  pm_password    = "QODTXP3750DSuhCH58O3zOdkuVTyp9Nh"      # Your Proxmox password
+  pm_tls_insecure = true                                   # Allows insecure TLS connections (set false in production)
+}
 
 #Configure Proxmox Resources Here
 resource "proxmox_vm_qemu" "test_terraform" {
@@ -29,7 +29,6 @@ resource "proxmox_vm_qemu" "test_terraform" {
   }
   network {
     model = "virtio"
-    bridge = "vmbr0"            # your network bridge name
-    tag    = 150                # VLAN ID 150
+    bridge = "vmbr0"                         
   }
 }
